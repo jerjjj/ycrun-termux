@@ -25,4 +25,16 @@ elif a==5:
 if a!=6:
     b=input("已经成功切换了,按任意键退出")
 if a==6:
-    os.system('debian')#启动容器并直接退出
+    c = os.system('debian')#尝试启动容器
+    if c == 0:#启动成功退出脚本
+        exit()
+    elif c ==32512:#启动失败
+        d = int(input("检测到你未安装容器,是否要安装(1/0)"))#是否需要安装tome
+        if d == 1:#如果需要,执行安装命令
+            os.system('bash -c "$(curl -fsSL https://gitee.com/mo2/linux/raw/2/2)"')
+        elif d == 0:#如果不需要退出脚本
+            exit()
+        elif d != 1:#序号输入错误的处理方式
+            exit("请输入正确的序号")
+        elif d != 0:
+            exit("请输入正确的序号")
