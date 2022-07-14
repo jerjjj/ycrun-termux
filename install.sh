@@ -2,6 +2,7 @@
 cp -p linux.py /data/data/com.termux/files/home/
 cp -p run.sh /data/data/com.termux/files/usr/etc/profile.d/
 if [ $? -eq 0 ];then
+  echo 安装成功
   rm -rf linux.py
   rm -rf run.sh
   rm -rf install.sh

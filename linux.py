@@ -30,6 +30,7 @@ if a != 6:
         g = int(input("检测到你未安装tsu,是否需要安装(1/0)"))#尝试安装tsu
         if g == 1:
             os.system('pkg install tsu')#安装tsu
+            os.system('python3 linux.py')
             exit()
         elif g == 0:
             exit()
@@ -47,6 +48,8 @@ if a==6:
         d = int(input("检测到你未安装容器,是否要安装(1/0)"))#是否需要安装tome
         if d == 1:#如果需要,执行安装命令
             os.system('bash -c "$(curl -fsSL https://gitee.com/mo2/linux/raw/2/2)"')
+            os.system('python3 linux.py')
+            exit()
         elif d == 0:#如果不需要退出脚本
             exit()
         elif d != 1:#序号输入错误的处理方式
