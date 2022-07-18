@@ -39,7 +39,7 @@ if a != 6:
         elif g != 0:
             exit("请输入正确的序号")
 if a!=6:
-    b=input("已经成功切换了,按任意键退出")
+    b=input("已经成功切换了,按回车键退出")
 if a==6:
     c = os.system('debian')#尝试启动容器
     if c == 0:#启动成功退出脚本
