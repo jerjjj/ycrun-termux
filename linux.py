@@ -7,11 +7,12 @@ print("3.切换到卡顿模式")
 print("4.切换到费电模式")
 print("5.切换到性能模式")
 print("6.启动容器")
-print("7.退出")
+print("7.termux换源")
+print("8.退出")
 a=int(input("请输入序号选择"))
 if a<1:#判断用户输入是否超出范围
     exit("请输入正确的序号")
-elif a>7:
+elif a>8:
     exit("请输入正确的序号")
 elif a==1:
     e = os.system('sudo sh /data/adb/modules/uperf/script/powercfg_main.sh auto')#切换到自动模式。
@@ -24,6 +25,10 @@ elif a==4:
 elif a==5:
     e = os.system('sudo sh /data/adb/modules/uperf/script/powercfg_main.sh fast')#切换到极速模式
 elif a==7:
+    os.system('termux-change-repo')
+    os.system('python3 linux.py')
+    exit()
+elif a==8:
     exit()
 if a != 6:
     if e == 32512:#如果报错
@@ -44,7 +49,7 @@ if a==6:
     c = os.system('debian')#尝试启动容器
     if c == 0:#启动成功退出脚本
         exit()
-    elif c ==32512:#启动失败
+    elif c == 32512:#启动失败
         d = int(input("检测到你未安装容器,是否要安装(1/0)"))#是否需要安装tome
         if d == 1:#如果需要,执行安装命令
             os.system('bash -c "$(curl -fsSL https://gitee.com/mo2/linux/raw/2/2)"')
