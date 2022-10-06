@@ -1,20 +1,17 @@
-## 目标
+### 功能
 
-打开 termux 切换 yc 调度运行模式
+配合termux切换yc脚本运行模式,可在termux启动时自动运行
 
-### 截图
+### 如何使用
 
-[![Xr1qWn.jpg](https://s1.ax1x.com/2022/06/08/Xr1qWn.jpg)](https://imgtu.com/i/Xr1qWn)
+```bash
+curl -o /data/data/com.termux/files/usr/bin/tyr https://github.com/jerjjj/ycrun-termux/releases/latest/download/tyr --create-dirs
+```
 
-### 安装方法
-
-#### 手动安装
-
-将压缩包解压，把"linux.py"放入"/data/data/com.termux/files/home/"，把"run.sh"放入"/data/data/com.termux/files/usr/etc/profile.d/"即可
-
-#### 自动安装
-
-解压压缩包，确保里面的三个文件在一个目录，运行 install.sh
+在每次启动时可以自动运行，也可以执行"tyr"命令手动运行(可在"tyr"后直接加数字来快捷切换)
 
 ### 注意事项
-无法自动运行,请尝试将权限改为777
+
+1.如果无法运行，请用mt管理器加上执行权限
+
+2.安装完成后需要手动执行一次"tyr"才可以自动运行
