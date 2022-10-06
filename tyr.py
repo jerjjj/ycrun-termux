@@ -2,6 +2,7 @@
 #coding = utf-8
 import os
 import sys
+import termios
 with open('/data/data/com.termux/files/usr/etc/profile.d/run.sh','w') as file_read:
     file_read.write('tyr')
 def runtype (num:int):#这个函数用来执行切换
@@ -26,6 +27,17 @@ def installer (num:int):#安装tsu和tome linux的函数(1为安装tsu,2为安�
         os.system("tyr")
         exit()
     return null
+def press_any_key_exit ():
+    fd = sys.stdin.fileno()
+    old_ttyinfo = termios.tcgetattr(fd)
+    new_ttyinfo = old_ttyinfo[:]
+    new_ttyinfo[3] &= ~termios.ICANON
+    new_ttyinfo[3] &= ~termios.ECHO
+    sys.stdout.write("成功切换，按任意键退出……")
+    sys.stdout.flush()
+    termios.tcsetattr(fd, termios.TCSANOW, new_ttyinfo)
+    os.read(fd, 7)
+    termios.tcsetattr(fd, termios.TCSANOW, old_ttyinfo)
 try:
     userinpf = sys.argv[1]
     userinp = int(userinpf)
@@ -50,8 +62,7 @@ if userinp >=1 | userinp <=5:
             os.system("tyr")
             exit()
     elif sta == 0:
-        print("成功切换")
-        exit()            
+        press_any_key_exit()            
 elif userinp == 6:
     sta = os.system("debian")
     if sta == 32512:
