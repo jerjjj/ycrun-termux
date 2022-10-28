@@ -1,10 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #coding = utf-8
 import os
 import sys
 import termios
-with open('/data/data/com.termux/files/usr/etc/profile.d/run.sh','w') as file_read:
-    file_read.write('tyr')
+import time
 def runtype (num:int):#这个函数用来执行切换
     if num == 1:
         sta = os.system('sudo sh /data/adb/modules/uperf/script/powercfg_main.sh auto')
@@ -38,6 +37,23 @@ def press_any_key_exit ():
     termios.tcsetattr(fd, termios.TCSANOW, new_ttyinfo)
     os.read(fd, 7)
     termios.tcsetattr(fd, termios.TCSANOW, old_ttyinfo)
+def autoboot (num:int):#自启动开关1为开启 0为关闭
+    if num == 1:
+        with open('/data/data/com.termux/files/usr/etc/profile.d/run.sh','w') as file_read:
+            file_read.write('tyr')
+        print("已开启")
+        time.sleep(1)
+        os.system("clear")
+        os.system("tyr")
+        exit()
+    elif num == 0:
+        os.system("rm -rf /data/data/com.termux/files/usr/etc/profile.d/run.sh")
+        print("已关闭")
+        time.sleep(1)
+        os.system("clear")
+        os.system("tyr")
+        exit()
+    return null
 try:
     userinpf = sys.argv[1]
     userinp = int(userinpf)
@@ -49,7 +65,9 @@ except IndexError:
     print("5.切换到性能模式")
     print("6.启动tome linux")
     print("7.termux换源")
-    print("8.退出")
+    print("8.开启自启动")
+    print("9.关闭自启动")
+    print("10..退出")
     userinp = int(input("请输入序号"))
 if userinp >=1 | userinp <=5:
     sta = runtype(userinp)
@@ -80,6 +98,10 @@ elif userinp == 7:
     os.system("clear")
     os.system("tyr")
 elif userinp == 8:
+    autoboot(1)
+elif userinp == 9:
+    autoboot(0)
+elif userinp == 10:
     exit()
 elif 1 == 1:
     exit("请输入正确的序号")
