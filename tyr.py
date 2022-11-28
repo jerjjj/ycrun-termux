@@ -68,7 +68,10 @@ except IndexError:
     print("8.开启自启动")
     print("9.关闭自启动")
     print("10..退出")
-    userinp = int(input("请输入序号"))
+    try:
+        userinp = int(input("请输入序号"))
+    except ValueError:
+        exit("请输入合法的整数值")
 if userinp >=1 | userinp <=5:
     sta = runtype(userinp)
     if sta == 32512:
